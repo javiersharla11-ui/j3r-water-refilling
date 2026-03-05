@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>J3R Water Refilling Station</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f1f1f1;
+}
+
+header{
+background:#0077b6;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+nav{
+background:#023e8a;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px 0;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+background:#0077b6;
+color:white;
+padding:10px 20px;
+border:none;
+cursor:pointer;
+}
+
+#adminPanel{
+display:none;
+}
+
+footer{
+background:#023e8a;
+color:white;
+text-align:center;
+padding:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>J3R WATER REFILLING STATION</h1>
+<p>Clean • Safe • Affordable Drinking Water</p>
+
+</header>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#order">Order</a>
+<a href="#price">Price</a>
+<a href="#contact">Contact</a>
+<a href="#admin">Admin</a>
+
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Welcome</h2>
+
+<p>Your trusted water refilling station for safe drinking water.</p>
+
+</div>
+
+<div class="card" id="order">
+
+<h2>Order Water Delivery</h2>
+
+<input id="name" placeholder="Customer Name">
+
+<input id="address" placeholder="Address">
+
+<input id="phone" placeholder="Phone Number">
+
+<input id="qty" type="number" placeholder="Number of Gallons">
+
+<button onclick="order()">Submit Order</button>
+
+</div>
+
+<div class="card" id="price">
+
+<h2>Water Price</h2>
+
+<p>Per Gallon: ₱<span id="waterPrice">25</span></p>
+
+</div>
+
+<div class="card" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>Phone: 09123456789</p>
+
+<p>Location: Your Barangay</p>
+
+</div>
+
+<div class="card" id="admin">
+
+<h2>Admin Login</h2>
+
+<input id="user" placeholder="Username">
+
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+<div class="card" id="adminPanel">
+
+<h2>Admin Dashboard</h2>
+
+<h3>Orders</h3>
+
+<ul id="orderList"></ul>
+
+<h3>Update Price</h3>
+
+<input id="newPrice" type="number">
+
+<button onclick="updatePrice()">Update Price</button>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 J3R Water Refilling Station</p>
+
+</footer>
+
+<script>
+
+let orders=[]
+
+function order(){
+
+let name=document.getElementById("name").value
+let address=document.getElementById("address").value
+let phone=document.getElementById("phone").value
+let qty=document.getElementById("qty").value
+
+let orderData=name+" | "+qty+" gallons | "+address
+
+orders.push(orderData)
+
+alert("Order Sent!")
+
+}
+
+function login(){
+
+let user=document.getElementById("user").value
+let pass=document.getElementById("pass").value
+
+if(user=="admin" && pass=="1234"){
+
+document.getElementById("adminPanel").style.display="block"
+
+showOrders()
+
+}else{
+
+alert("Wrong Login")
+
+}
+
+}
+
+function showOrders(){
+
+let list=document.getElementById("orderList")
+
+list.innerHTML=""
+
+orders.forEach(o=>{
+
+let li=document.createElement("li")
+
+li.textContent=o
+
+list.appendChild(li)
+
+})
+
+}
+
+function updatePrice(){
+
+let newPrice=document.getElementById("newPrice").value
+
+document.getElementById("waterPrice").innerText=newPrice
+
+alert("Price Updated")
+
+}
+
+</script>
+
+</body>
+  </html>
